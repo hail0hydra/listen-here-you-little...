@@ -61,4 +61,4 @@ no-resume-playback
 <br>
 <br>
 
-> #### TL;DR - `mpv --shuffle --really-quiet --no-input-terminal $1 & disown`
+> #### TL;DR - `mpv --profile=customsize --shuffle --really-quiet --no-input-terminal $1 & disown`

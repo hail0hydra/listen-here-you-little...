@@ -57,3 +57,8 @@ no-resume-playback
 - This is a personal project. Feel free to modify it as you like.
 - If you have any suggestions or improvements, please open an issue or a pull request.
 - Enjoy your music! 🎵
+
+<br>
+<br>
+
+> #### TL;DR - `mpv --shuffle --really-quiet --no-input-terminal $1 & disown`

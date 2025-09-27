@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+SOCKET="/tmp/mpvsocket"
+
+response=$(echo '{ "command": ["playlist-prev"], "request_id": 0 }' | socat - "$SOCKET")
+
+error=$(echo "$response" | jq -r '.error // empty')
+
+if [[ -z "$error" || "$error" == "success" ]]; then
+    echo '{"status": "moved to previous playlist song"}' | jq
+else
+    echo "{\"error\": \"$error\"}"
+fi
+

@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+
+SOCKET="/tmp/mpvsocket"
+
+
+# get songs in list
+playlist_count=$(echo '{ "command": ["get_property", "playlist-count"], "request_id": 1 }' | socat - "$SOCKET" | jq '.data' 2>/dev/null)
+
+if [[ "$playlist_count" == "null" ]]; then
+
+    # IPC error (maybe the song is over 🙂)
+    echo '{"error": "could not connect to mpv IPC socket"}' | jq
+    exit 1
+fi
+
+if (( playlist_count <= 1 )); then
+    # Not a playlist or single file loaded
+    echo '{"bruh 😞": "loaded file is not a playlist or only song item present"}' | jq
+    exit 0
+fi
+
+# send playlist-next command
+response=$(echo '{ "command": ["playlist-next"], "request_id": 0 }' | socat - "$SOCKET")
+
+
+echo "{\"🎵 playing next file\": $(echo "$response" | jq '.error')}" | jq
+
+
+# echo '{ "command" : ["playlist-next"] }' | socat - "$SOCKET"

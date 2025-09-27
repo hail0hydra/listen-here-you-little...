@@ -1,18 +1,21 @@
 # My Music Streamer
 
+<img src="./bird.gif" width=200 />
+
+<br>
+<br>
+<br>
+
 - This is how I listen to music on my terminal. :)
 
 <br>
 
-1. simple script to glue audio logic and added links together to get a working audio streamer.
+1. Different from older release, the older release will be a different project in its own.
 
-2. ✅ options are as follows:
-    - arg: `-s` for **singles**,
-    - agr: `-p` for **playlists**
+2. has `disown` ;)
 
-3. ⏳disown  [TODO]
 
-4. ⏳add images to fzf links. Get the image from yt-dlp. [TODO]
+<br>
 
 
 ## Requirements
@@ -20,20 +23,67 @@
 - `yt-dlp`
 - `mpv`
 - `fzf`
+- `socat`
 
 ## Usage
 
 ```bash
-git clone pyStreamer
-cd pyStreamer
+git clone https://github.com/hail0hydra/listen-here-you-little...
 
-python3 load.py -s # for singles
-python3 load.py -p  # for playlists
+# make sure your `~/.local/bin` is in the PATH, just put it in your ~/.profile or ~/.zshrc or whatver shell you use
+#
+# export PATH="$HOME/.local/bin:$PATH"
+#
+
+cd listen-here-you-little...
+
+# copy all the files: (play, pause, resume, next, prev) into the .local bin
+
+cp next play pause resume $HOME/.local/bin  # make sure you do have $HOME/.local/bin 💫
+
+#chmod all of them to give execute permissions
+
+chmod +x $HOME/.local/bin/*
 ```
 
+<br>
+<br>
 
-## Adding Your Music
-- Add you playlist or single links in `playlists.json` or `singles.json` files respectively.
+
+- play just like this:
+
+
+```bash
+# from youtube copy any video link
+
+play <your-link>
+
+
+# you can pause it.
+pause
+
+
+# if its a playlist, you can go to next
+next
+
+# lly go back
+prev
+
+# stop
+stop
+```
+
+- beware `stop` and `pause` are not same
+
+<br>
+<br>
+<br>
+
+
+## Whyyyy?
+
+- to do this
+
 
 
 ## Head's Up
@@ -60,5 +110,4 @@ no-resume-playback
 
 <br>
 <br>
-
-> #### TL;DR - `mpv --profile=customsize --shuffle --really-quiet --no-input-terminal $1 & disown`
+<br>

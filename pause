@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+SOCKET="/tmp/mpvsocket"
+
+response=$(echo '{ "command": ["set_property", "pause", true] }' | socat - "$SOCKET")
+
+error=$(echo "$response" | jq -r '.error // empty')
+
+if [[ -z "$error" || "$error" == "success" ]]; then
+    echo '{"status": "paused successfully"}' | jq
+else
+    echo "{\"error\": \"$error\"}"
+fi
+
